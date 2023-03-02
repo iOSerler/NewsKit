@@ -18,13 +18,15 @@ public struct NewsCellView: View {
                 
                 VStack {
                     Image(systemName: item.image ?? "newspaper")
-                        .font(.title)
+                        .font(.system(size: 40, weight: .light))
+                        .frame(width: 60)
                     Spacer()
                 }
-               
+                Spacer().frame(width: 10)
                 
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack {
+                VStack(alignment: .leading) {
+                    Spacer().frame(height: 3)
+                    HStack(alignment: .top) {
                         Text(item.title)
                             .font(.custom(assets.titleFont, size: 14))
                             .foregroundColor(Color(assets.primaryTextColor))
@@ -34,19 +36,16 @@ public struct NewsCellView: View {
                             .foregroundColor(Color(assets.secondaryColor))
                             .padding(.leading, 5)
                     }
-            
+                    Spacer().frame(height: 10)
                     Text(item.description)
                         .font(.custom(assets.descriptionFont, size: 12))
                         .foregroundColor(Color(assets.secondaryTextColor))
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
-                    
                     Divider()
-                    
+                    Spacer()
                 }
             }
-            .padding(.horizontal, 20)
-            .frame(height: 100)
             
         }
     }

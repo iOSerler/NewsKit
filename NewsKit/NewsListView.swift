@@ -21,7 +21,6 @@ struct NewsListView: View {
                 NewsCellView(
                     assets: assets,
                     item: item)
-//                .listRowSeparator(.visible, edges: .bottom)
                 .listRowSeparator(.hidden, edges: .all)
                 .onTapGesture {
                     notificationViewModel.itemAction(ActionItem.newsItem(item))
@@ -33,16 +32,17 @@ struct NewsListView: View {
 //                        assets: assets,
 //                        item: $selectedEntry)
 //                })
-            }.onDelete { (indexSet) in
-                switch listType {
-                case "messages":
-                    self.notificationViewModel.messages.remove(atOffsets: indexSet)
-                case "news":
-                    self.notificationViewModel.news.remove(atOffsets: indexSet)
-                default:
-                    print("No such type")
-                }
             }
+//            .onDelete { (indexSet) in
+//                switch listType {
+//                case "messages":
+//                    self.notificationViewModel.messages.remove(atOffsets: indexSet)
+//                case "news":
+//                    self.notificationViewModel.news.remove(atOffsets: indexSet)
+//                default:
+//                    print("No such type")
+//                }
+//            }
             
         }
         .listStyle(.plain)
