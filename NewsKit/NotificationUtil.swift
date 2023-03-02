@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct NavigationUtil {
+struct NewsNavigationUtil {
     static func popToRootView() {
         findNavigationController(viewController: UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController)?
             .popToRootViewController(animated: true)

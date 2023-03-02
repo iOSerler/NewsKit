@@ -1,5 +1,5 @@
 //
-//  NotificationDetailView.swift
+//  NewsDetailView.swift
 //  ReusEd
 //
 //  Created by Anna Dluzhinskaya on 23.06.2022.
@@ -8,10 +8,10 @@
 import SwiftUI
 
 @available(iOS 13.0, *)
-struct NotificationDetailView: View {
-    var assets: NotificationAssets
+public struct NewsDetailView: View {
+    var assets: NewsAssets
     @Binding var item: NewsItem?
-    var body: some View {
+    public var body: some View {
         VStack {
             Text(self.item!.title)
         }
