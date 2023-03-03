@@ -11,22 +11,16 @@ import SwiftUI
 struct NewsListView: View {
     var assets: NewsAssets
     var listType: String
-    @ObservedObject var notificationViewModel: NewsViewModel
+    @ObservedObject var newsViewModel: NewsViewModel
 //    @State var showDetails: Bool = false
 //    @State var selectedEntry: NewsItem?
     
     var body: some View {
         List {
-            ForEach(notificationViewModel.getData(type: listType)) { item in
-                NewsCellView(
-                    assets: assets,
-                    item: item)
-                .listRowSeparator(.hidden, edges: .all)
-                .onTapGesture {
-                    notificationViewModel.itemAction(ActionItem.newsItem(item))
-//                    self.showDetails.toggle()
-//                    self.selectedEntry = item
-                }
+            ForEach(newsViewModel.getData(type: listType)) { item in
+                
+                NewsCellView(assets: assets, item: item, newsViewModel: newsViewModel, isRead: newsViewModel.storage.isRead(item.id))
+                    .listRowSeparator(.hidden, edges: .all)
 //                .sheet(isPresented: $showDetails, content: {
 //                    NewsDetailView(
 //                        assets: assets,

@@ -12,7 +12,7 @@ public struct NewsView: View {
     var assets: NewsAssets
     
     @ObservedObject var newsViewModel: NewsViewModel
-    @State private var selectedSegment = 0
+    @State private var selectedSegment = 1
 
     public init(assets: NewsAssets, notificationViewModel: NewsViewModel, selectedSegment: Int = 0) {
         self.assets = assets
@@ -23,18 +23,18 @@ public struct NewsView: View {
     public var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 5) {
-                Picker("", selection: $selectedSegment) {
-                    Text("Messages".localized()).tag(0)
-                    Text("News".localized()).tag(1)
-                }
-                .pickerStyle(.segmented)
-                .padding(.horizontal)
-                Spacer().frame(height: 5)
+//                Picker("", selection: $selectedSegment) {
+//                    Text("Messages".localized()).tag(0)
+//                    Text("News".localized()).tag(1)
+//                }
+//                .pickerStyle(.segmented)
+//                .padding(.horizontal)
+//                Spacer().frame(height: 5)
                 
                 let listType = selectedSegment == 0 ? "messages" : "news"
                 
                 if newsViewModel.getData(type: listType).count != 0 {
-                    NewsListView(assets: assets, listType: listType, notificationViewModel: newsViewModel)
+                    NewsListView(assets: assets, listType: listType, newsViewModel: newsViewModel)
                 } else {
                     EmptyListView(assets: assets, listType: listType)
                 }

@@ -7,10 +7,13 @@
 
 import SwiftUI
 
-@available(iOS 13.0.0, *)
+@available(iOS 15.0.0, *)
 public struct NewsCellView: View {
     var assets: NewsAssets
     var item: NewsItem
+    
+    @ObservedObject var newsViewModel: NewsViewModel
+    @State var isRead: Bool
     
     public var body: some View {
         VStack(alignment: .center) {
@@ -22,7 +25,7 @@ public struct NewsCellView: View {
                         .frame(width: 60)
                     Spacer()
                 }
-                Spacer().frame(width: 10)
+                Spacer().frame(width: 8)
                 
                 VStack(alignment: .leading) {
                     Spacer().frame(height: 3)
@@ -31,10 +34,15 @@ public struct NewsCellView: View {
                             .font(.custom(assets.titleFont, size: 14))
                             .foregroundColor(Color(assets.primaryTextColor))
                         Spacer()
-                        Text(item.date)
-                            .font(.custom(assets.descriptionFont, size: 12))
-                            .foregroundColor(Color(assets.secondaryColor))
-                            .padding(.leading, 5)
+                        HStack {
+                            Image(systemName: "circle.fill")
+                                .font(.system(size: 5, weight: .light))
+                                .foregroundColor(isRead ? .clear : Color(uiColor: UIColor.systemBlue))
+                            Text(item.date)
+                                .font(.custom(assets.descriptionFont, size: 12))
+                                .foregroundColor(Color(assets.primaryColor))
+                                .padding(.leading, 5)
+                        }
                     }
                     Spacer().frame(height: 10)
                     Text(item.description)
@@ -47,6 +55,13 @@ public struct NewsCellView: View {
                 }
             }
             
+        }
+        .onTapGesture {
+            newsViewModel.storage.markAsRead(item.id)
+            newsViewModel.itemAction(ActionItem.newsItem(item))
+            isRead = true
+//                        self.showDetails.toggle()
+//                        self.selectedEntry = item
         }
     }
 }

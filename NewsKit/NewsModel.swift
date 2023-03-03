@@ -60,8 +60,12 @@ public struct NewsItem: Identifiable, Codable, Listable, Browsable {
     var date: String {
         isRussian ? dateRu : dateEn
     }
-
-    
-    
 }
+
+public protocol ClientStorage {
+    func markAsRead(_ itemId: String)
+    func isRead(_ itemId: String) -> Bool
+    func hasUnreadNews() -> Bool
+}
+
     

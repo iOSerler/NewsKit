@@ -11,11 +11,13 @@ import Foundation
 public class NewsViewModel: ObservableObject {
     @Published var messages: [NewsItem]
     @Published var news: [NewsItem]
+    @Published var storage: ClientStorage
     var itemAction: (ActionItem) -> Void
     
-    public init(notifications: [NewsItem], news: [NewsItem], itemAction: @escaping (ActionItem) -> Void) {
+    public init(notifications: [NewsItem], news: [NewsItem], storage: ClientStorage, itemAction: @escaping (ActionItem) -> Void) {
         self.messages = notifications
         self.news = news
+        self.storage = storage
         self.itemAction = itemAction
     }
     
