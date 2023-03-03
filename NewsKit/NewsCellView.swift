@@ -29,20 +29,19 @@ public struct NewsCellView: View {
                 
                 VStack(alignment: .leading) {
                     Spacer().frame(height: 3)
-                    HStack(alignment: .top) {
+                    HStack(alignment: .center) {
                         Text(item.title)
                             .font(.custom(assets.titleFont, size: 14))
                             .foregroundColor(Color(assets.primaryTextColor))
+                        Image(systemName: "circle.fill")
+                            .font(.system(size: 5, weight: .light))
+                            .foregroundColor(isRead ? .clear : Color(uiColor: UIColor.systemBlue))
                         Spacer()
-                        HStack {
-                            Image(systemName: "circle.fill")
-                                .font(.system(size: 5, weight: .light))
-                                .foregroundColor(isRead ? .clear : Color(uiColor: UIColor.systemBlue))
-                            Text(item.date)
-                                .font(.custom(assets.descriptionFont, size: 12))
-                                .foregroundColor(Color(assets.primaryColor))
-                                .padding(.leading, 5)
-                        }
+                            
+                        Text(item.date)
+                            .font(.custom(assets.descriptionFont, size: 12))
+                            .foregroundColor(Color(assets.primaryTextColor))
+                            .padding(.leading, 5)
                     }
                     Spacer().frame(height: 10)
                     Text(item.description)
