@@ -13,13 +13,13 @@ public struct NewsCellView: View {
     var item: NewsItem
     
     @ObservedObject var newsViewModel: NewsViewModel
-    @State var isRead: Bool
     
     public var body: some View {
         VStack(alignment: .center) {
             HStack(alignment: .center) {
                 
                 VStack {
+                    Spacer().frame(height: 5)
                     Image(systemName: item.image ?? "newspaper")
                         .font(.system(size: 40, weight: .light))
                         .frame(width: 60)
@@ -28,20 +28,20 @@ public struct NewsCellView: View {
                 Spacer().frame(width: 8)
                 
                 VStack(alignment: .leading) {
-                    Spacer().frame(height: 3)
                     HStack(alignment: .center) {
                         Text(item.title)
                             .font(.custom(assets.titleFont, size: 14))
                             .foregroundColor(Color(assets.primaryTextColor))
+                        
+                        Spacer()
                         Image(systemName: "circle.fill")
                             .font(.system(size: 5, weight: .light))
-                            .foregroundColor(isRead ? .clear : Color(uiColor: UIColor.systemBlue))
-                        Spacer()
-                            
+                            .foregroundColor(newsViewModel.storage.isRead(item.id) ? .clear : Color(uiColor: UIColor.systemBlue))
+                            .padding(.leading, 5)
+
                         Text(item.date)
                             .font(.custom(assets.descriptionFont, size: 12))
                             .foregroundColor(Color(assets.primaryTextColor))
-                            .padding(.leading, 5)
                     }
                     Spacer().frame(height: 10)
                     Text(item.description)
@@ -50,7 +50,6 @@ public struct NewsCellView: View {
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
                     Divider()
-                    Spacer()
                 }
             }
             
@@ -58,7 +57,6 @@ public struct NewsCellView: View {
         .onTapGesture {
             newsViewModel.storage.markAsRead(item.id)
             newsViewModel.itemAction(ActionItem.newsItem(item))
-            isRead = true
 //                        self.showDetails.toggle()
 //                        self.selectedEntry = item
         }

@@ -8,6 +8,7 @@
 import Foundation
 
 public enum ActionItem {
+    case simpleItem(SimpleItem)
     case linkItem(LinkItem)
     case newsItem(NewsItem)
 }
@@ -19,6 +20,10 @@ protocol Listable {
 
 protocol Browsable {
     var url: String { get }
+}
+
+public struct SimpleItem: Identifiable {
+    public var id: String
 }
 
 public struct LinkItem: Identifiable, Browsable {
@@ -64,7 +69,13 @@ public struct NewsItem: Identifiable, Codable, Listable, Browsable {
 
 public protocol ClientStorage {
     func markAsRead(_ itemId: String)
+    func markAsUnread(_ itemId: String)
     func isRead(_ itemId: String) -> Bool
+
+    func markAsArchived(_ itemId: String)
+    func markAsActive(_ itemId: String)
+    func isArchived(_ itemId: String) -> Bool
+
     func hasUnreadNews() -> Bool
 }
 

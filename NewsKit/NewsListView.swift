@@ -10,7 +10,7 @@ import SwiftUI
 @available(iOS 15.0, *)
 struct NewsListView: View {
     var assets: NewsAssets
-    var listType: String
+    var listType: ListType
     @ObservedObject var newsViewModel: NewsViewModel
 //    @State var showDetails: Bool = false
 //    @State var selectedEntry: NewsItem?
@@ -19,24 +19,53 @@ struct NewsListView: View {
         List {
             ForEach(newsViewModel.getData(type: listType)) { item in
                 
-                NewsCellView(assets: assets, item: item, newsViewModel: newsViewModel, isRead: newsViewModel.storage.isRead(item.id))
+                NewsCellView(assets: assets, item: item, newsViewModel: newsViewModel)
                     .listRowSeparator(.hidden, edges: .all)
+                    .swipeActions(edge: .trailing) {
+                        
+                        if listType == .active {
+                            Button {
+                                newsViewModel.archiveItem(item.id)
+                            } label: {
+                                Label("Archive".localized(), systemImage: "archivebox") 
+                            }
+                        } else {
+                            Button {
+                                newsViewModel.unarchiveItem(item.id)
+                            } label: {
+                                Label("Unarchive".localized(), systemImage: "tray")
+                            }
+                        }
+
+                    }
+                    .swipeActions(edge: .leading) {
+                        if newsViewModel.storage.isRead(item.id) {
+                            Button {
+                                newsViewModel.storage.markAsUnread(item.id)
+                                newsViewModel.activeItems = newsViewModel.activeItems
+                                newsViewModel.archivedItems = newsViewModel.archivedItems
+                            } label: {
+                                Label("Unread".localized(), systemImage: "message.badge")
+                            }
+                        } else {
+                            Button {
+                                newsViewModel.storage.markAsRead(item.id)
+                                newsViewModel.activeItems = newsViewModel.activeItems
+                                newsViewModel.archivedItems = newsViewModel.archivedItems
+                            } label: {
+                                Label("Read".localized(), systemImage: "message")
+                            }
+                        }
+
+                    }
+
 //                .sheet(isPresented: $showDetails, content: {
 //                    NewsDetailView(
 //                        assets: assets,
 //                        item: $selectedEntry)
 //                })
+                
             }
-//            .onDelete { (indexSet) in
-//                switch listType {
-//                case "messages":
-//                    self.notificationViewModel.messages.remove(atOffsets: indexSet)
-//                case "news":
-//                    self.notificationViewModel.news.remove(atOffsets: indexSet)
-//                default:
-//                    print("No such type")
-//                }
-//            }
             
         }
         .listStyle(.plain)
@@ -46,18 +75,20 @@ struct NewsListView: View {
 @available(iOS 13.0.0, *)
 struct EmptyListView: View {
     var assets: NewsAssets
-    var listType: String
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
-            Image(systemName: "bell")
-                .padding(.bottom)
-            Text("NothingNew".localized())
-                .font(.custom(assets.titleFont, size: 16))
-                .foregroundColor(Color(assets.primaryTextColor))
-            Text("KeepPrayer".localized())
-                .font(.custom(assets.descriptionFont, size: 12))
-                .foregroundColor(Color(assets.secondaryTextColor))
-                .multilineTextAlignment(.center)
-        }.padding(.top, UIScreen.main.bounds.height/15)
+        List {
+            VStack(spacing: 10) {
+                Image(systemName: "text.quote")
+                    .padding(.bottom)
+                Text("NothingInThisList".localized())
+                    .font(.custom(assets.titleFont, size: 16))
+                    .foregroundColor(Color(assets.primaryTextColor))
+                Text("KeepPrayer".localized())
+                    .font(.custom(assets.descriptionFont, size: 13))
+                    .foregroundColor(Color(assets.secondaryTextColor))
+                    .multilineTextAlignment(.center)
+            }.padding(.vertical, UIScreen.main.bounds.height/15)
+        }
+        .listStyle(.plain)
     }
 }

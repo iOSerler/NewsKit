@@ -62,10 +62,14 @@ extension String {
         let en = [
             "ContactDeveloper": "Contact Developer",
             "contact_link": "https://api.whatsapp.com/send?phone=+77765206766&text=As-salaamu%20%27alaikum!%20I%27m%20using%20NamazApp.",
+            "SupportNamazApp": "Support NamazApp",
+            "Personalization": "Tell us about yourself",
             "News": "News",
             "Messages": "Messages",
-            "NothingNew": "You're all up-to-date.",
+            "NothingInThisList": "Nothing in this list yet",
             "KeepPrayer": "Keep your prayer up!\n\nIf you have any questions, please get in touch with us.",
+            "Read":"Read",
+            "Unread":"Unread",
         ]
         
         return en[self] ?? self
@@ -76,10 +80,14 @@ extension String {
         let ru = [
             "ContactDeveloper": "Связаться с разработчиком",
             "contact_link": "https://api.whatsapp.com/send?phone=+77765206766&text=%D0%90%D1%81%D1%81%D0%B0%D0%BB%D1%8F%D0%BC%D1%83+%D0%B0%D0%BB%D1%8F%D0%B9%D0%BA%D1%83%D0%BC%21+%D0%AF+%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D1%8E+%D0%9D%D0%B0%D0%BC%D0%B0%D0%B7%D0%90%D0%BF%D0%BF.",
+            "SupportNamazApp": "Поддержать НамазАпп",
+            "Personalization": "Расскажите о себе",
             "News": "Новости",
             "Messages": "Сообщения",
-            "NothingNew": "Новых сообщений нет",
+            "NothingInThisList": "В этом списке пока ничего",
             "KeepPrayer": "Держитесь намаза, воистину намаз - защита верующего.\n\nЕсли у вас есть вопросы, пишите нам.",
+            "Read":"Прочитано",
+            "Unread":"Непрочитано",
         ]
         
         return ru[self] ?? self
