@@ -61,7 +61,7 @@ extension String {
     public func getEnglish() -> String {
         let en = [
             "ContactDeveloper": "Ask\na question",
-            "contact_link": "https://api.whatsapp.com/send?phone=+77765206766&text=As-salaamu%20%27alaikum!%20I%27m%20using%20NamazApp.",
+            "contact_link": "https://api.whatsapp.com/send?phone=+77765206766&text=As-salaamu%20%27alaikum!%20I%27m%20using%20NamazApp.%20I%20have%20the%20following%20question%20or%20suggestion:",
             "SupportNamazApp": "Support NamazApp",
             "Personalization": "Tell us about yourself",
             "News": "News",
