@@ -70,6 +70,10 @@ extension String {
             "KeepPrayer": "Keep your prayer up!\n\nIf you have any questions, please get in touch with us.",
             "Read":"Read",
             "Unread":"Unread",
+            "Active":"Active",
+            "Archived":"Archived",
+            "Archive":"Archive",
+            "Unarchive":"Unarchive",
         ]
         
         return en[self] ?? self
@@ -88,6 +92,10 @@ extension String {
             "KeepPrayer": "Держитесь намаза, воистину намаз - защита верующего.\n\nЕсли у вас есть вопросы, пишите нам.",
             "Read":"Прочитано",
             "Unread":"Непрочитано",
+            "Active":"Активные",
+            "Archived":"Архив",
+            "Archive":"В архив",
+            "Unarchive":"В активные",
         ]
         
         return ru[self] ?? self
