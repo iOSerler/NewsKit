@@ -66,7 +66,7 @@ extension String {
             "Personalization": "Tell us about yourself",
             "News": "News",
             "Messages": "Messages",
-            "NothingInThisList": "Nothing in this list yet",
+            "NothingInThisList": "Nothing in this list at the momemnt",
             "KeepPrayer": "Keep your prayer up!\n\nIf you have any questions, please get in touch with us.",
             "Read":"Read",
             "Unread":"Unread",
