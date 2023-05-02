@@ -12,8 +12,6 @@ struct NewsListView: View {
     var assets: NewsAssets
     var listType: ListType
     @ObservedObject var newsViewModel: NewsViewModel
-    @State var showDetails: Bool = false
-    @State var selectedEntry: (any NewsItem)?
     
     var body: some View {
         List {
@@ -59,10 +57,10 @@ struct NewsListView: View {
 
                     }
 
-                .sheet(isPresented: $showDetails, content: {
+                    .sheet(isPresented: $newsViewModel.showDetails, content: {
                     NewsDetailView(
                         assets: assets,
-                        item: $selectedEntry)
+                        newsViewModel: newsViewModel)
                 })
                 
             }

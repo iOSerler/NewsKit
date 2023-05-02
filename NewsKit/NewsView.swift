@@ -42,7 +42,7 @@ public struct NewsView: View {
                         GridItem(.adaptive(minimum: UIScreen.main.bounds.size.width*0.28))
                     ]
                 
-                LazyVGrid(columns: columns, alignment: .center, spacing: 8) {
+                LazyVGrid(columns: columns, alignment: .center) {
                     ForEach(newsViewModel.navigationItems, id: \.id) { item in
                         Button(
                             action: {
@@ -50,11 +50,10 @@ public struct NewsView: View {
                             }, label: {
                                 Text(item.title)
                                     .font(Font.custom(assets.titleFont, size: 14))
-                                    .frame(width: UIScreen.main.bounds.size.width*0.28, height: 50, alignment: .center)
+                                    .frame(width: UIScreen.main.bounds.size.width*0.28, height: 44, alignment: .center)
                                     .background(Color(assets.primaryColor))
                                     .foregroundColor(Color(assets.buttonTextColor))
                                     .cornerRadius(12)
-                                    .padding(.horizontal, 4)
                             }
                         )
                     }
@@ -66,8 +65,6 @@ public struct NewsView: View {
                 Spacer()
                 
             }
-//            .navigationTitle("What's new")
-//            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

@@ -49,6 +49,7 @@ public struct NewsCellView: View {
                         .foregroundColor(Color(assets.secondaryTextColor))
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
+                        .lineLimit(3)
                     Divider()
                 }
             }
@@ -56,7 +57,8 @@ public struct NewsCellView: View {
         }
         .onTapGesture {
             newsViewModel.storage.markAsRead(item.id)
-            newsViewModel.itemAction(item)
+            newsViewModel.selectedEntry = item
+            newsViewModel.showDetails = true
         }
     }
 }
