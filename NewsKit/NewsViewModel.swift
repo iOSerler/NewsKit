@@ -37,8 +37,6 @@ public class NewsViewModel: ObservableObject {
             return self.archivedItems
         case .navigation:
             return self.navigationItems
-        default:
-            return []
         }
     }
     
