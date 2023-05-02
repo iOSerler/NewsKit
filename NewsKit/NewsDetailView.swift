@@ -35,6 +35,7 @@ public struct NewsDetailView: View {
                 JustifiedText(newsItem.description, font: .systemFont(ofSize: 16))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 Button(action: {
+                    newsViewModel.archiveItem(newsItem.id)
                     newsViewModel.showDetails = false
                     newsViewModel.itemAction(newsItem)
                 }) {

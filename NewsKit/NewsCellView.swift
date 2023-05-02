@@ -21,8 +21,8 @@ public struct NewsCellView: View {
                 VStack {
                     Spacer().frame(height: 5)
                     Image(systemName: item.icon ?? "newspaper")
-                        .font(.system(size: 40, weight: .light))
-                        .frame(width: 60)
+                        .font(.system(size: 30, weight: .light))
+                        .frame(width: 50)
                     Spacer()
                 }
                 Spacer().frame(width: 8)
@@ -49,7 +49,7 @@ public struct NewsCellView: View {
                         .foregroundColor(Color(assets.secondaryTextColor))
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
-                        .lineLimit(3)
+                        .lineLimit(2)
                     Divider()
                 }
             }

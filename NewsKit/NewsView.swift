@@ -13,7 +13,7 @@ public struct NewsView: View {
     
     @ObservedObject var newsViewModel: NewsViewModel
     @State private var selectedSegment = 0
-
+    
     public init(assets: NewsAssets, notificationViewModel: NewsViewModel, selectedSegment: Int = 0) {
         self.assets = assets
         self.newsViewModel = notificationViewModel
@@ -38,36 +38,36 @@ public struct NewsView: View {
                     EmptyListView(assets: assets)
                 }
                 
+                Divider()
                 let columns = [
-                        GridItem(.adaptive(minimum: UIScreen.main.bounds.size.width*0.28))
-                    ]
+                    GridItem(.flexible()),
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ]
                 
-                LazyVGrid(columns: columns, alignment: .center) {
+                LazyVGrid(columns: columns, alignment: .center, spacing: 12) {
+
                     ForEach(newsViewModel.navigationItems, id: \.id) { item in
-                        Button(
-                            action: {
-                                newsViewModel.itemAction(item)
-                            }, label: {
+                        
+                        Button(action: {
+                            newsViewModel.itemAction(item)
+                        }) {
+                            VStack(spacing: 2) {
+                                Image(systemName: item.icon ?? "")
+                                    .font(.body)
+                                    .foregroundColor(Color(assets.primaryColor))
+                                    .frame(width: 20, height: 16)
                                 Text(item.title)
-                                    .font(Font.custom(assets.titleFont, size: 14))
-                                    .frame(width: UIScreen.main.bounds.size.width*0.28, height: 44, alignment: .center)
-                                    .background(Color(assets.primaryColor))
-                                    .foregroundColor(Color(assets.buttonTextColor))
-                                    .cornerRadius(12)
+                                    .lineLimit(1)
+                                    .font(Font.custom(assets.titleFont, size: 15))
+                                    .foregroundColor(Color(assets.primaryColor))
                             }
-                        )
+                        }
+                        
                     }
                 }
                 .padding(.horizontal)
-                
-               
-                
-                Spacer()
-                
             }
         }
     }
 }
-
-
-
