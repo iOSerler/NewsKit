@@ -78,6 +78,10 @@ extension String {
             "Archived":"Archived",
             "Archive":"Archive",
             "Unarchive":"Unarchive",
+            "audio": "Open the audio",
+            "more": "Go to More",
+            "celebrate": "Alhamdulillah!",
+            "article": "Read the article",
         ]
         
         return en[self] ?? self
@@ -104,6 +108,10 @@ extension String {
             "Archived":"Архив",
             "Archive":"В архив",
             "Unarchive":"В активные",
+            "audio": "Открыть аудио",
+            "more": "Октрыть вкладку Разное",
+            "celebrate": "Альхамдулилляh!",
+            "article": "Прочитать статью",
         ]
         
         return ru[self] ?? self

@@ -34,12 +34,11 @@ public struct NewsDetailView: View {
                 
                 JustifiedText(newsItem.description, font: .systemFont(ofSize: 16))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                Spacer()
                 Button(action: {
                     newsViewModel.showDetails = false
                     newsViewModel.itemAction(newsItem)
                 }) {
-                    Text(newsItem.type)
+                    Text(newsItem.type.localized())
                         .foregroundColor(.white)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
