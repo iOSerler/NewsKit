@@ -7,64 +7,15 @@
 
 import Foundation
 
-public enum ActionItem {
-    case simpleItem(SimpleItem)
-    case linkItem(LinkItem)
-    case newsItem(NewsItem)
-}
-
-protocol Listable {
-    var title: String {get}
-    var isShown: Int {get}
-}
-
-protocol Browsable {
+public protocol NewsItem {
+    var id: String { get }
+    var type: String { get }
+    var title: String { get }
     var url: String { get }
-}
-
-public struct SimpleItem: Identifiable {
-    public var id: String
-}
-
-public struct LinkItem: Identifiable, Browsable {
-    public var id: String
-    public var url: String
-}
-
-public struct NewsItem: Identifiable, Codable, Listable, Browsable {
-    
-    public var id: String
-    public var type: String
-    var image: String?
-    var isShown: Int
-    
-    var titleEn: String
-    var titleRu: String
-    
-    var descriptionEn: String
-    var descriptionRu: String
-    
-    var urlEn: String
-    var urlRu: String
-    
-    var dateEn: String
-    var dateRu: String
-    
-    public var title: String {
-        isRussian ? titleRu : titleEn
-    }
-    
-    var description: String {
-        isRussian ? descriptionRu : descriptionEn
-    }
-    
-    public var url: String {
-        isRussian ? urlRu : urlEn
-    }
-    
-    var date: String {
-        isRussian ? dateRu : dateEn
-    }
+    var description: String { get }
+    var date: String { get }
+    var isShown: Int { get }
+    var icon: String? { get }
 }
 
 public protocol ClientStorage {

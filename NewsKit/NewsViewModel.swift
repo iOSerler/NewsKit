@@ -10,28 +10,33 @@ import Foundation
 enum ListType {
     case active
     case archive
+    case navigation
 }
 
 @available(iOS 13.0, *)
 public class NewsViewModel: ObservableObject {
-    @Published var activeItems: [NewsItem]
-    @Published var archivedItems: [NewsItem]
+    @Published var activeItems: [any NewsItem]
+    @Published var archivedItems: [any NewsItem]
+    @Published var navigationItems: [any NewsItem]
     @Published var storage: ClientStorage
-    var itemAction: (ActionItem) -> Void
+    var itemAction: (any NewsItem) -> Void
     
-    public init(active: [NewsItem], archived: [NewsItem], storage: ClientStorage, itemAction: @escaping (ActionItem) -> Void) {
+    public init(active: [any NewsItem], archived: [any NewsItem], navigationItems: [any NewsItem], storage: ClientStorage, itemAction: @escaping (any NewsItem) -> Void) {
         self.activeItems = active
         self.archivedItems = archived
         self.storage = storage
         self.itemAction = itemAction
+        self.navigationItems = navigationItems
     }
     
-    func getData(type: ListType) -> [NewsItem] {
+    func getData(type: ListType) -> [any NewsItem] {
         switch type {
         case .active:
             return self.activeItems
         case .archive:
             return self.archivedItems
+        case .navigation:
+            return self.navigationItems
         default:
             return []
         }

@@ -12,12 +12,12 @@ struct NewsListView: View {
     var assets: NewsAssets
     var listType: ListType
     @ObservedObject var newsViewModel: NewsViewModel
-//    @State var showDetails: Bool = false
-//    @State var selectedEntry: NewsItem?
+    @State var showDetails: Bool = false
+    @State var selectedEntry: (any NewsItem)?
     
     var body: some View {
         List {
-            ForEach(newsViewModel.getData(type: listType)) { item in
+            ForEach(newsViewModel.getData(type: listType), id: \.id) { item in
                 
                 NewsCellView(assets: assets, item: item, newsViewModel: newsViewModel)
                     .listRowSeparator(.hidden, edges: .all)
@@ -59,11 +59,11 @@ struct NewsListView: View {
 
                     }
 
-//                .sheet(isPresented: $showDetails, content: {
-//                    NewsDetailView(
-//                        assets: assets,
-//                        item: $selectedEntry)
-//                })
+                .sheet(isPresented: $showDetails, content: {
+                    NewsDetailView(
+                        assets: assets,
+                        item: $selectedEntry)
+                })
                 
             }
             

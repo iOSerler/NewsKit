@@ -10,7 +10,7 @@ import SwiftUI
 @available(iOS 15.0.0, *)
 public struct NewsCellView: View {
     var assets: NewsAssets
-    var item: NewsItem
+    var item: any NewsItem
     
     @ObservedObject var newsViewModel: NewsViewModel
     
@@ -20,7 +20,7 @@ public struct NewsCellView: View {
                 
                 VStack {
                     Spacer().frame(height: 5)
-                    Image(systemName: item.image ?? "newspaper")
+                    Image(systemName: item.icon ?? "newspaper")
                         .font(.system(size: 40, weight: .light))
                         .frame(width: 60)
                     Spacer()
@@ -56,9 +56,7 @@ public struct NewsCellView: View {
         }
         .onTapGesture {
             newsViewModel.storage.markAsRead(item.id)
-            newsViewModel.itemAction(ActionItem.newsItem(item))
-//                        self.showDetails.toggle()
-//                        self.selectedEntry = item
+            newsViewModel.itemAction(item)
         }
     }
 }

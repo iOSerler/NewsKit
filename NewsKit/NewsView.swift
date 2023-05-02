@@ -38,49 +38,30 @@ public struct NewsView: View {
                     EmptyListView(assets: assets)
                 }
                 
-                HStack {
-                    Button(
-                        action: {
-                            newsViewModel.itemAction(ActionItem.linkItem(LinkItem(id: "contact_developer", url: "contact_link".localized())))
-                        }, label: {
-                            Text("ContactDeveloper".localized())
-                                .font(Font.custom(assets.titleFont, size: 14))
-                                .frame(width: UIScreen.main.bounds.size.width*0.28, height: 50, alignment: .center)
-                                .background(Color(assets.primaryColor))
-                                .foregroundColor(Color(assets.buttonTextColor))
-                                .cornerRadius(12)
-                                .padding(.horizontal, 4)
-                        }
-                    )
-                    
-                    Button(
-                        action: {
-                            newsViewModel.itemAction(ActionItem.simpleItem(SimpleItem(id: "support_app")))
-                        }, label: {
-                            Text("SupportNamazApp".localized())
-                                .font(Font.custom(assets.titleFont, size: 14))
-                                .frame(width: UIScreen.main.bounds.size.width*0.28, height: 50, alignment: .center)
-                                .background(Color(assets.primaryColor))
-                                .foregroundColor(Color(assets.buttonTextColor))
-                                .cornerRadius(12)
-                                .padding(.horizontal, 4)
-                        }
-                    )
-                    
-                    Button(
-                        action: {
-                            newsViewModel.itemAction(ActionItem.simpleItem(SimpleItem(id: "personalization")))
-                        }, label: {
-                            Text("Personalization".localized())
-                                .font(Font.custom(assets.titleFont, size: 14))
-                                .frame(width: UIScreen.main.bounds.size.width*0.28, height: 50, alignment: .center)
-                                .background(Color(assets.primaryColor))
-                                .foregroundColor(Color(assets.buttonTextColor))
-                                .cornerRadius(12)
-                                .padding(.horizontal, 4)
-                        }
-                    )
+                let columns = [
+                        GridItem(.adaptive(minimum: UIScreen.main.bounds.size.width*0.28))
+                    ]
+                
+                LazyVGrid(columns: columns, alignment: .center, spacing: 8) {
+                    ForEach(newsViewModel.navigationItems, id: \.id) { item in
+                        Button(
+                            action: {
+                                newsViewModel.itemAction(item)
+                            }, label: {
+                                Text(item.title)
+                                    .font(Font.custom(assets.titleFont, size: 14))
+                                    .frame(width: UIScreen.main.bounds.size.width*0.28, height: 50, alignment: .center)
+                                    .background(Color(assets.primaryColor))
+                                    .foregroundColor(Color(assets.buttonTextColor))
+                                    .cornerRadius(12)
+                                    .padding(.horizontal, 4)
+                            }
+                        )
+                    }
                 }
+                .padding(.horizontal)
+                
+               
                 
                 Spacer()
                 
@@ -90,3 +71,6 @@ public struct NewsView: View {
         }
     }
 }
+
+
+

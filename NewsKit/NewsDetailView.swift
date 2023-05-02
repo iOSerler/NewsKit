@@ -10,7 +10,7 @@ import SwiftUI
 @available(iOS 13.0, *)
 public struct NewsDetailView: View {
     var assets: NewsAssets
-    @Binding var item: NewsItem?
+    @Binding var item: (any NewsItem)?
     public var body: some View {
         VStack {
             Text(self.item!.title)
