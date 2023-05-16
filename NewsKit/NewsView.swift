@@ -38,8 +38,9 @@ public struct NewsView: View {
                     EmptyListView(assets: assets)
                 }
                 
-                Divider()
                 let columns = [
+                    GridItem(.flexible()),
+                    GridItem(.flexible()),
                     GridItem(.flexible()),
                     GridItem(.flexible()),
                     GridItem(.flexible())
@@ -54,13 +55,14 @@ public struct NewsView: View {
                         }) {
                             VStack(spacing: 2) {
                                 Image(systemName: item.icon ?? "")
-                                    .font(.body)
-                                    .foregroundColor(Color(assets.primaryColor))
-                                    .frame(width: 20, height: 16)
+                                .font(.title2)
+                                    .foregroundColor(Color(assets.primaryTextColor))
+                                    .frame(width: 25, height: 20)
                                 Text(item.title)
                                     .lineLimit(1)
-                                    .font(Font.custom(assets.titleFont, size: 15))
-                                    .foregroundColor(Color(assets.primaryColor))
+                                    .font(Font.custom(assets.titleFont, size: 10))
+                                    .foregroundColor(Color(assets.primaryTextColor))
+                                Spacer().frame(height: 8)
                             }
                         }
                         
