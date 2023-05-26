@@ -11,7 +11,8 @@ import SwiftUI
 public struct NewsDetailView: View {
     var assets: NewsAssets
     @ObservedObject var newsViewModel: NewsViewModel
-    
+    @State private var clickedButton = false
+
     public var body: some View {
         
         if let newsItem = newsViewModel.selectedEntry {
@@ -35,6 +36,14 @@ public struct NewsDetailView: View {
                 JustifiedText(newsItem.description, font: .systemFont(ofSize: 16))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 Button(action: {
+                    if clickedButton {
+                        return
+                    }
+                    clickedButton = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        clickedButton = false
+                    }
+                    
                     newsViewModel.archiveItem(newsItem.id)
                     newsViewModel.showDetails = false
                     newsViewModel.itemAction(newsItem)

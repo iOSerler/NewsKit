@@ -53,13 +53,12 @@ public struct NewsView: View {
                         Button(action: {
                             newsViewModel.itemAction(item)
                         }) {
-                            VStack(spacing: 2) {
+                            VStack(spacing: 6) {
                                 Image(systemName: item.icon ?? "")
                                 .font(.title2)
-                                    .foregroundColor(Color(assets.primaryTextColor))
-                                    .frame(width: 25, height: 20)
+                                .foregroundColor(item.id == "support_app" ?  Color.red : Color(assets.primaryTextColor))
+                                    .frame(height: 25)
                                 Text(item.title)
-                                    .lineLimit(1)
                                     .font(Font.custom(assets.titleFont, size: 10))
                                     .foregroundColor(Color(assets.primaryTextColor))
                                 Spacer().frame(height: 8)
