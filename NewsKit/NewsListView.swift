@@ -56,13 +56,6 @@ struct NewsListView: View {
                         }
 
                     }
-
-                    .sheet(isPresented: $newsViewModel.showDetails, content: {
-                    NewsDetailView(
-                        assets: assets,
-                        newsViewModel: newsViewModel)
-                })
-                
             }
             
         }

@@ -54,14 +54,27 @@ public struct NewsView: View {
                             newsViewModel.itemAction(item)
                         }) {
                             VStack(spacing: 6) {
-                                Image(systemName: item.icon ?? "")
-                                .font(.title2)
-                                .foregroundColor(item.id == "support_app" ?  Color.red : Color(assets.primaryTextColor))
-                                    .frame(height: 25)
-                                Text(item.title)
-                                    .font(Font.custom(assets.titleFont, size: 10))
-                                    .foregroundColor(Color(assets.primaryTextColor))
-                                Spacer().frame(height: 8)
+                                if #available(iOS 15, *),
+                                   item.id == "support_app",
+                                   !isRussian {
+                                    Image("premium")
+                                    .resizable()
+                                    .frame(width: 22.5, height: 25)
+                                    Text("Get Namaz\nPremium")
+                                        .font(Font.custom(assets.titleFont, size: 10))
+                                        .foregroundColor(Color(assets.primaryTextColor))
+                                    Spacer().frame(height: 8)
+                                } else {
+                                    
+                                    Image(systemName: item.icon ?? "")
+                                        .font(.title2)
+                                        .foregroundColor(item.id == "support_app" ?  Color.red : Color(assets.primaryTextColor))
+                                        .frame(height: 25)
+                                    Text(item.title)
+                                        .font(Font.custom(assets.titleFont, size: 10))
+                                        .foregroundColor(Color(assets.primaryTextColor))
+                                    Spacer().frame(height: 8)
+                                }
                             }
                         }
                         
@@ -69,6 +82,11 @@ public struct NewsView: View {
                 }
                 .padding(.horizontal)
             }
+            .sheet(isPresented: $newsViewModel.showDetails, content: {
+                NewsDetailView(
+                    assets: assets,
+                    newsViewModel: newsViewModel)
+            })
         }
     }
 }
