@@ -54,13 +54,11 @@ public struct NewsView: View {
                             newsViewModel.itemAction(item)
                         }) {
                             VStack(spacing: 6) {
-                                if #available(iOS 15, *),
-                                   item.id == "support_app",
-                                   !isRussian {
-                                    Image("premium")
-                                    .resizable()
-                                    .frame(width: 22.5, height: 25)
-                                    Text("Get Namaz\nPremium")
+                                if item.id == "support_app" && !isRussian {
+                                    Image(systemName: "cube")
+                                        .font(.title2)
+                                        .frame(height: 25)
+                                    Text("Namaz\nPremium")
                                         .font(Font.custom(assets.titleFont, size: 10))
                                         .foregroundColor(Color(assets.primaryTextColor))
                                     Spacer().frame(height: 8)
