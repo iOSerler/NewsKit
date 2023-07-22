@@ -79,7 +79,7 @@ extension String {
             "Archive":"Archive",
             "Unarchive":"Unarchive",
             "audio": "Open the audio",
-            "more": "Go to More",
+            "settings": "Go to Settings",
             "celebrate": "Alhamdulillah!",
             "article": "Read the article",
         ]
@@ -109,7 +109,7 @@ extension String {
             "Archive":"В архив",
             "Unarchive":"В активные",
             "audio": "Послушать аудио",
-            "more": "Открыть вкладку Разное",
+            "settings": "Открыть вкладку Настройки",
             "celebrate": "Альхамдулилляh!",
             "article": "Прочитать статью",
         ]
