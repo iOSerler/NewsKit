@@ -54,7 +54,7 @@ public struct NewsView: View {
                             newsViewModel.itemAction(item)
                         }) {
                             VStack(spacing: 6) {
-                                if item.id == "support_app" && !isRussian {
+                                if item.id == "support_app" {
                                     Image(systemName: "cube")
                                         .font(.title2)
                                         .frame(height: 25)
