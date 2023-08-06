@@ -46,6 +46,8 @@ public struct NewsView: View {
                     GridItem(.flexible())
                 ]
                 
+                Divider()
+                
                 LazyVGrid(columns: columns, alignment: .center, spacing: 12) {
 
                     ForEach(newsViewModel.navigationItems, id: \.id) { item in

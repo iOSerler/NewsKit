@@ -16,6 +16,7 @@ public protocol NewsItem {
     var date: String { get }
     var isShown: Int { get }
     var icon: String? { get }
+    var restriction: String? { get }
 }
 
 public protocol ClientStorage {
