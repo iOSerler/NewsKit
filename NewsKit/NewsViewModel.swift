@@ -19,8 +19,8 @@ public class NewsViewModel: ObservableObject {
     @Published var archivedItems: [any NewsItem]
     @Published var navigationItems: [any NewsItem]
     @Published var storage: ClientStorage
-    @Published var selectedEntry: (any NewsItem)?
-    @Published var showDetails: Bool = false
+    @Published public var selectedEntry: (any NewsItem)?
+    @Published public var showDetails: Bool = false
     
     var itemAction: (any NewsItem) -> Void
     

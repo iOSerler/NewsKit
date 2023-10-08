@@ -12,6 +12,11 @@ public struct NewsDetailView: View {
     var assets: NewsAssets
     @ObservedObject var newsViewModel: NewsViewModel
     @State private var clickedButton = false
+    
+    public init(assets: NewsAssets, newsViewModel: NewsViewModel) {
+        self.assets = assets
+        self.newsViewModel = newsViewModel
+    }
 
     public var body: some View {
         

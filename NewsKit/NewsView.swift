@@ -14,9 +14,9 @@ public struct NewsView: View {
     @ObservedObject var newsViewModel: NewsViewModel
     @State private var selectedSegment = 0
     
-    public init(assets: NewsAssets, notificationViewModel: NewsViewModel, selectedSegment: Int = 0) {
+    public init(assets: NewsAssets, newsViewModel: NewsViewModel, selectedSegment: Int = 0) {
         self.assets = assets
-        self.newsViewModel = notificationViewModel
+        self.newsViewModel = newsViewModel
         self.selectedSegment = selectedSegment
     }
     
