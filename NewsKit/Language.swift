@@ -82,7 +82,8 @@ extension String {
             "settings": "Go to Settings",
             "celebrate": "Alhamdulillah!",
             "article": "Read the article",
-            "action": "Try it out"
+            "action": "Try it out",
+            "phrase": "Hear the phrase"
         ]
         
         return en[self] ?? self
@@ -113,7 +114,8 @@ extension String {
             "settings": "Открыть вкладку Настройки",
             "celebrate": "Альхамдулилляh!",
             "article": "Прочитать статью",
-            "action": "Посмотреть"
+            "action": "Посмотреть",
+            "phrase": "Услышать фразу"
         ]
         
         return ru[self] ?? self

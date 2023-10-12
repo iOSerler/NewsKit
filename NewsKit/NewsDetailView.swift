@@ -21,7 +21,8 @@ public struct NewsDetailView: View {
     public var body: some View {
         
         if let newsItem = newsViewModel.selectedEntry {
-            VStack(alignment: .leading, spacing: 16) {
+            ScrollView() {
+                Spacer().frame(height: 16)
                 HStack {
                     if let icon = newsItem.icon {
                         Image(systemName: icon)
@@ -32,14 +33,19 @@ public struct NewsDetailView: View {
                         .font(.title)
                         .padding(4)
                 }
+                Spacer().frame(height: 16)
                 
                 Text(newsItem.date)
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .padding(4)
+                Spacer().frame(height: 16)
+
                 
                 JustifiedText(newsItem.description, font: .systemFont(ofSize: 16))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxWidth: .infinity, minHeight: newsItem.description.height(withConstrainedWidth: UIScreen.main.bounds.width-40, font: .systemFont(ofSize: 16)) + 40, maxHeight: .infinity)
+                Spacer().frame(height: 16)
+
                 Button(action: {
                     if clickedButton {
                         return
@@ -62,6 +68,7 @@ public struct NewsDetailView: View {
                        
                 }
                 .frame(maxWidth: .infinity)
+
 
             }
             .padding()
@@ -90,4 +97,12 @@ struct JustifiedText: UIViewRepresentable {
   func updateUIView(_ uiView: UITextView, context: Context) {
     uiView.text = text
   }
+}
+
+extension String {
+    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+        return ceil(boundingBox.height)
+    }
 }
