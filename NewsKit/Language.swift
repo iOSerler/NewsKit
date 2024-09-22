@@ -85,6 +85,7 @@ extension String {
             "settings": "Go to Settings",
             "celebrate": "Alhamdulillah!",
             "article": "Read the article",
+            "dynamic": "See the content",
             "action": "Try it out",
             "phrase": "Hear the phrase"
         ]
@@ -117,6 +118,7 @@ extension String {
             "settings": "Открыть вкладку Настройки",
             "celebrate": "Альхамдулилляh!",
             "article": "Прочитать статью",
+            "dynamic": "Посмотреть",
             "action": "Посмотреть",
             "phrase": "Услышать фразу"
         ]
