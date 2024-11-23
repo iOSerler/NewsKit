@@ -28,7 +28,6 @@ public protocol ClientStorage {
     func markAsActive(_ itemId: String)
     func isArchived(_ itemId: String) -> Bool
 
-    func hasUnreadNews() -> Bool
 }
 
     
